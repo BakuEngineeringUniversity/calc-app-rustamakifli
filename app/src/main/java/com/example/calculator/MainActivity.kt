@@ -1,18 +1,17 @@
 package com.example.calculator
-
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 
 class MainActivity : AppCompatActivity() {
 
-    var digit_on_screen = StringBuilder(12)
+    var digitOnScreen = StringBuilder(12)
     var operation: Char = ' '
     var leftHandSide: Double = 0.0
     var rightHandSide: Double = 0.0
+    var calculationHistory = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         initializeButtons()
     }
+
     private fun initializeButtons() {
         functionalButtons()
         operationalButtons()
@@ -30,196 +30,132 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun numericalButtons() {
-        val one_btn: Button = findViewById(R.id.one_btn)
-        val two_btn: Button = findViewById(R.id.two_btn)
-        val three_btn: Button = findViewById(R.id.three_btn)
-        val four_btn: Button = findViewById(R.id.four_btn)
-        val five_btn: Button = findViewById(R.id.five_btn)
-        val six_btn: Button = findViewById(R.id.six_btn)
-        val seven_btn: Button = findViewById(R.id.seven_btn)
-        val eight_btn: Button = findViewById(R.id.eight_btn)
-        val nine_btn: Button = findViewById(R.id.nine_btn)
-        val zero_btn: Button = findViewById(R.id.zero_btn)
-        val dot_btn: Button = findViewById(R.id.dot_btn)
+        val oneBtn: Button = findViewById(R.id.one_btn)
+        val twoBtn: Button = findViewById(R.id.two_btn)
+        val threeBtn: Button = findViewById(R.id.three_btn)
+        val fourBtn: Button = findViewById(R.id.four_btn)
+        val fiveBtn: Button = findViewById(R.id.five_btn)
+        val sixBtn: Button = findViewById(R.id.six_btn)
+        val sevenBtn: Button = findViewById(R.id.seven_btn)
+        val eightBtn: Button = findViewById(R.id.eight_btn)
+        val nineBtn: Button = findViewById(R.id.nine_btn)
+        val zeroBtn: Button = findViewById(R.id.zero_btn)
+        val dotBtn: Button = findViewById(R.id.dot_btn)
 
-
-        one_btn.setOnClickListener {
-            appendToDigitOnScreen("1")
-        }
-
-        two_btn.setOnClickListener {
-            appendToDigitOnScreen("2")
-        }
-
-        three_btn.setOnClickListener {
-            appendToDigitOnScreen("3")
-        }
-
-        four_btn.setOnClickListener {
-            appendToDigitOnScreen("4")
-        }
-
-        five_btn.setOnClickListener {
-            appendToDigitOnScreen("5")
-        }
-
-        six_btn.setOnClickListener {
-            appendToDigitOnScreen("6")
-        }
-
-        seven_btn.setOnClickListener {
-            appendToDigitOnScreen("7")
-        }
-
-        eight_btn.setOnClickListener {
-            appendToDigitOnScreen("8")
-        }
-
-        nine_btn.setOnClickListener {
-            appendToDigitOnScreen("9")
-        }
-
-        zero_btn.setOnClickListener {
-            appendToDigitOnScreen("0")
-        }
-
-        dot_btn.setOnClickListener {
-            appendToDigitOnScreen(".")
-        }
-
-
+        oneBtn.setOnClickListener { appendToDigitOnScreen("1") }
+        twoBtn.setOnClickListener { appendToDigitOnScreen("2") }
+        threeBtn.setOnClickListener { appendToDigitOnScreen("3") }
+        fourBtn.setOnClickListener { appendToDigitOnScreen("4") }
+        fiveBtn.setOnClickListener { appendToDigitOnScreen("5") }
+        sixBtn.setOnClickListener { appendToDigitOnScreen("6") }
+        sevenBtn.setOnClickListener { appendToDigitOnScreen("7") }
+        eightBtn.setOnClickListener { appendToDigitOnScreen("8") }
+        nineBtn.setOnClickListener { appendToDigitOnScreen("9") }
+        zeroBtn.setOnClickListener { appendToDigitOnScreen("0") }
+        dotBtn.setOnClickListener { appendToDigitOnScreen(".") }
     }
 
     private fun appendToDigitOnScreen(digit: String) {
-
-        digit_on_screen.append(digit)
+        digitOnScreen.append(digit)
         val resultTextView: TextView = findViewById(R.id.result_id)
-
-        resultTextView.text = digit_on_screen.toString()
+        resultTextView.text = digitOnScreen.toString()
     }
 
-
     private fun operationalButtons() {
-        val addition_btn: Button = findViewById(R.id.addition_btn)
-        val subtract_btn: Button = findViewById(R.id.subtract_btn)
-        val divide_btn: Button = findViewById(R.id.divide_btn)
-        val multipy_btn: Button = findViewById(R.id.multipy_btn)
+        val additionBtn: Button = findViewById(R.id.addition_btn)
+        val subtractBtn: Button = findViewById(R.id.subtract_btn)
+        val divideBtn: Button = findViewById(R.id.divide_btn)
+        val multiplyBtn: Button = findViewById(R.id.multipy_btn)
 
-        addition_btn.setOnClickListener {
-            selectOperation('A')
-        }
-
-        subtract_btn.setOnClickListener {
-            selectOperation('S')
-        }
-
-        divide_btn.setOnClickListener {
-            selectOperation('D')
-        }
-
-        multipy_btn.setOnClickListener {
-            selectOperation('M')
-        }
-
+        additionBtn.setOnClickListener { selectOperation('A') }
+        subtractBtn.setOnClickListener { selectOperation('S') }
+        divideBtn.setOnClickListener { selectOperation('D') }
+        multiplyBtn.setOnClickListener { selectOperation('M') }
     }
 
     private fun selectOperation(c: Char) {
-
         operation = c
-        leftHandSide = digit_on_screen.toString().toDouble()
-        digit_on_screen.clear()
+        leftHandSide = digitOnScreen.toString().toDouble()
+        digitOnScreen.clear()
         val resultTextView: TextView = findViewById(R.id.result_id)
-
         resultTextView.text = "0"
     }
 
     private fun functionalButtons() {
         val resultTextView: TextView = findViewById(R.id.result_id)
-        val clear_everything_btn: Button = findViewById(R.id.clear_everything_btn)
-        val clear_btn: Button = findViewById(R.id.clear_btn)
-        val backspace_btn: ImageButton = findViewById(R.id.backspace_btn)
-        val equal_btn: Button = findViewById(R.id.equal_btn)
+        val clearEverythingBtn: Button = findViewById(R.id.clear_everything_btn)
+        val clearBtn: Button = findViewById(R.id.clear_btn)
+        val backspaceBtn: ImageButton = findViewById(R.id.backspace_btn)
+        val equalBtn: Button = findViewById(R.id.equal_btn)
 
-        clear_everything_btn.setOnClickListener {
-            digit_on_screen.clear()
+        clearEverythingBtn.setOnClickListener {
+            digitOnScreen.clear()
+            calculationHistory.clear()
             resultTextView.text = "0"
+            val historyTextView: TextView = findViewById(R.id.history_id)
+            historyTextView.text = ""
         }
 
-        clear_btn.setOnClickListener {
-
-            if (digit_on_screen.length <= 0) {
+        clearBtn.setOnClickListener {
+            if (digitOnScreen.length <= 0) {
                 return@setOnClickListener
             } else {
                 clearDigit()
             }
         }
 
-        backspace_btn.setOnClickListener {
-            if (digit_on_screen.length <= 0) {
+        backspaceBtn.setOnClickListener {
+            if (digitOnScreen.length <= 0) {
                 return@setOnClickListener
             } else {
                 clearDigit()
             }
         }
 
-        equal_btn.setOnClickListener {
+        equalBtn.setOnClickListener {
             performMathOperation()
         }
-
     }
 
-
     private fun performMathOperation() {
-
-        rightHandSide = digit_on_screen.toString().toDouble()
+        rightHandSide = digitOnScreen.toString().toDouble()
         val resultTextView: TextView = findViewById(R.id.result_id)
 
-
         when (operation) {
-
             'A' -> {
-                val sum = OperationsHelper.add(leftHandSide, rightHandSide)
+                val sum = leftHandSide + rightHandSide
                 resultTextView.text = sum.toString()
-                digit_on_screen.clear()
-                digit_on_screen.append(sum)
+                calculationHistory.append("${leftHandSide.toInt()} + ${rightHandSide.toInt()} = $sum\n")
             }
             'S' -> {
-                val subtract = OperationsHelper.subtract(leftHandSide, rightHandSide)
+                val subtract = leftHandSide - rightHandSide
                 resultTextView.text = subtract.toString()
-                digit_on_screen.clear()
-                digit_on_screen.append(subtract)
+                calculationHistory.append("${leftHandSide.toInt()} - ${rightHandSide.toInt()} = $subtract\n")
             }
             'M' -> {
-                val multiply = OperationsHelper.multiply(leftHandSide, rightHandSide)
+                val multiply = leftHandSide * rightHandSide
                 resultTextView.text = multiply.toString()
-                digit_on_screen.clear()
-                digit_on_screen.append(multiply)
+                calculationHistory.append("${leftHandSide.toInt()} * ${rightHandSide.toInt()} = $multiply\n")
             }
             'D' -> {
-                val divide = OperationsHelper.divide(leftHandSide, rightHandSide)
+                val divide = leftHandSide / rightHandSide
                 resultTextView.text = divide.toString()
-                digit_on_screen.clear()
-                digit_on_screen.append(divide)
+                calculationHistory.append("${leftHandSide.toInt()} / ${rightHandSide.toInt()} = $divide\n")
             }
-
         }
 
+        val historyTextView: TextView = findViewById(R.id.history_id)
+        historyTextView.text = calculationHistory.toString()
     }
 
     private fun clearDigit() {
         val resultTextView: TextView = findViewById(R.id.result_id)
-
-        val length = digit_on_screen.length
-
-        digit_on_screen.deleteCharAt(length - 1)
+        val length = digitOnScreen.length
+        digitOnScreen.deleteCharAt(length - 1)
         if (length <= 0) {
             resultTextView.text = "0"
-        }else{
-            resultTextView.text = digit_on_screen.toString()
+        } else {
+            resultTextView.text = digitOnScreen.toString()
         }
-
-
     }
-
-
 }
