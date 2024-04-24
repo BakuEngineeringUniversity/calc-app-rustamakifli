@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
             digitOnScreen.clear()
             calculationHistory.clear()
             resultTextView.text = "0"
-            val historyTextView: TextView = findViewById(R.id.history_id)
-            historyTextView.text = ""
+//            val historyTextView: TextView = findViewById(R.id.history_id)
+//            historyTextView.text = ""
         }
 
         clearBtn.setOnClickListener {
@@ -144,8 +144,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val historyTextView: TextView = findViewById(R.id.history_id)
-        historyTextView.text = calculationHistory.toString()
+//        val historyTextView: TextView = findViewById(R.id.history_id)
+//        historyTextView.text = calculationHistory.toString()
     }
 
     private fun clearDigit() {

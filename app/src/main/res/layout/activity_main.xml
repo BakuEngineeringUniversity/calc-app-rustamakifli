@@ -7,15 +7,6 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/history_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/result_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,6 +21,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/history_id"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/bg_history"-->
+<!--        android:padding="16dp"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:layout_below="@id/result_id"-->
+<!--        android:textSize="18sp"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
